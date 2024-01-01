@@ -10,34 +10,30 @@ class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */  
+    
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('task.index', compact('tasks'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+  
+    
+  
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
+        $request->validate([
+            'task' => 'required|string|max:255', // Add any validation rules as needed
+        ]);
+    
+        $task = new Task();
+        $task->task = $request->input('task');
+        $task->save();
+    
+        return redirect()->route('task.index');
     }
 
     /**
@@ -59,8 +55,11 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect()->route('task.index');
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('/task', [App\Http\Controllers\TaskController::class, 'index'])->name('task.index');
+Route::post('/task', [App\Http\Controllers\TaskController::class, 'store'])->name('task.store');
+Route::delete('/task/{id}', [App\Http\Controllers\TaskController::class, 'destroy'])->name('task.delete');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

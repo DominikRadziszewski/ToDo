@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Enums\TaskStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +16,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('task');
+            $table->enum('status', TaskStatus::TYPES)->default(TaskStatus::None);
             $table->timestamps();
         });
     }
