@@ -24,5 +24,6 @@ Auth::routes();
 Route::get('/task', [App\Http\Controllers\TaskController::class, 'index'])->name('task.index');
 Route::post('/task', [App\Http\Controllers\TaskController::class, 'store'])->name('task.store');
 Route::delete('/task/{id}', [App\Http\Controllers\TaskController::class, 'destroy'])->name('task.delete');
+Route::put('/task/{id}', [App\Http\Controllers\TaskController::class, 'update'])->name('task.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

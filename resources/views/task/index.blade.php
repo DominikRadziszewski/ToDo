@@ -50,7 +50,18 @@
                                 </form>
 
                             </td>
-                            </td>
+                            <td>
+                                <form action="{{ route('task.update', ['id' => $task->id]) }}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <label for="status">Change Status:</label>
+                                    <select name="status" id="status">
+                                        <option value="Not Started" >Not Started</option>
+                                        <option value="In Progress" >In Progress</option>
+                                        <option value="Done" >Done</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-info">Update Status</button>
+                                </form>
                         </tr>
                     @endforeach
                 </tbody>
